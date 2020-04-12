@@ -13,29 +13,34 @@
 // // Add event listener to generate button
 // generateBtn.addEventListener("click", writePassword);
 
+var randPw = '';
+
 var password = {
   length: 8,
   alphaLc: "abcdefghijklmnopqrstuvwxyz",
   alphaUc: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   numeric: "0123456789", 
   specialChar: "~!@#$%^&*()_+=-|}]{[';:/?.>,<",
-  randPw: '',
 
   randAlphaLc: function() {
     var randLc = this.alphaLc.charAt(Math.floor(Math.random () * 25)); 
-    this.randPw = this.randPw.concat(randLc);  
+    randPw = randPw.concat(randLc);  
+    return randPw; 
   },
   randAlphaUc: function() {
     var randUc = this.alphaUc.charAt(Math.floor(Math.random () * 25)); 
-    this.randPw = this.randPw.concat(randUc); 
+    randPw = randPw.concat(randUc); 
+    return randPw; 
   },
   randNumeric: function() {
     var ranNum = this.numeric.charAt(Math.floor(Math.random () * 10)); 
-    this.randPw = this.randPw.concat(ranNum); 
+    randPw = randPw.concat(ranNum); 
+    return randPw; 
   },
   randSpecChar: function() {
     var randSChar = this.specialChar.charAt(Math.floor(Math.random () * 29)); 
-    this.randPw = this.randPw.concat(randSChar); 
+    randPw = randPw.concat(randSChar); 
+    return randPw; 
   },
 
   strongPw: function() {
@@ -49,12 +54,15 @@ var password = {
         this.randNumeric(); 
       } else {
         this.randSpecChar(); 
-    return this.randPw; 
       }
     }
+  },
+
+  superPW: function() {
+      
   }
 }
 
 password.strongPw();
-console.log(password.randPw); 
+console.log(randPw); 
   
