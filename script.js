@@ -13,30 +13,38 @@
 // // Add event listener to generate button
 // generateBtn.addEventListener("click", writePassword);
 
-debugger
-var generateBtn = document.querySelector("#generate");
-var length = document.getElementById("inputLength"); 
-var casing = toString(document.getElementById("inputCasing").value);
-var incNumb = toString(document.getElementById("inputNum").value); 
-var spChar = toString(document.getElementById("inputSpChar").value); 
 
-generateBtn.addEventListener("click", writePassword);
-var randPw = '';
+//var generateBtn = document.querySelector("#generate");
+// var length = document.getElementById("inputLength").value; 
+// var casing = toString(document.getElementById("inputCasing").value);
+// var incNumb = toString(document.getElementById("inputNum").value); 
+// var spChar = toString(document.getElementById("inputSpChar").value); 
+// var randPw = writePassword();
+//passwordText.value = randPw; 
+//generateBtn.addEventListener("click", writePassword);
+
+
+//Define Variables
+const length = 18; 
+const casing = "all lower"; 
+const incNumb = "Use Some Numbers"; 
+const spChar = "Some Special Characters"; 
+let randPw = ''; 
 
 
 
-function writePassword (casing, incNumb, spChar) {
-    var passwordText = document.querySelector("password"); 
-    if (casing === "ALL UPPER CASE") {
+//define function to call various methods within the 'password' object, based on values returned from document queries 
+function writePassword () {
+    if (casing === "ALL UPPER" && incNumb === "No Numbers" && spChar === "No Special Characters") {
         password.passAllUpp(); 
         return randPw; 
-    } else if (casing === "all lower") {
+    } else if (casing === "all lower" && incNumb === "No Numbers" && spChar === "No Special Characters") {
         password.passAllLow(); 
         return randPw; 
-    } else if (incNumb === "All Numbers") {
+    } else if (casing === "No Letters" && incNumb === "All Numbers" && spChar === "No Special Characters") {
         password.passAllNum(); 
         return randPw; 
-    } else if (spChar === "All Special Characters") {
+    } else if (casing === "No Letters" && incNumb === "No Numbers" && spChar === "All Special Characters") {
         password.passAllSpChar(); 
         return randPw; 
     } else if (casing === "Mixture" && incNumb === "No Numbers" && spChar === "No Special Characters") {
@@ -60,24 +68,28 @@ function writePassword (casing, incNumb, spChar) {
     } else {
         password.passNoUpper(); 
         return randPw; 
-    } passwordText.value = randPw; 
+    } 
+    
 
 }
 
-
+//define password method
+//Contains all alpha/num/special character lists that each password.method pulls from
 var password = {
-    //length: document.getElementById("inputLength").value, 
-    //casing: toString(document.getElementById("inputCasing").value),
-    //spChar: toString(document.getElementById("inputSpChar").value),
     alphaLc: "abcdefghijklmnopqrstuvwxyz",
     alphaUc: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
     numeric: "0123456789", 
     specialChar: "~!@#$%^&*()_+=-|}]{[';:/?.>,<",
     quality: false,
 
+ 
+    //Define method
     randAlphaLc: function() {
+        //set 'var' to be random index of character list
         var randLc = this.alphaLc.charAt(Math.floor(Math.random () * 25)); 
+        //concatenate index value to dynamic variable 'randPW'
         randPw = randPw.concat(randLc);  
+        //return randPw back to global scope
         return randPw; 
     },
     randAlphaUc: function() {
@@ -115,12 +127,11 @@ var password = {
         if (length >= 19) {
             this.quality = true; 
         }
-        array = [1, 2, 4];
         for (i = 0; i < length; i++) {
-            var num = array.charAt(Math.floor(Math.random() * 2)); 
-            if (num === 0) {
+            var num = Math.floor(Math.random() * 3) + 1; 
+            if (num === 1) {
                 this.randAlphaLc(); 
-            } else if (num === 1) {
+            } else if (num === 2) {
                 this.randAlphaUc(); 
             } else {
                 this.randSpecChar(); 
@@ -132,13 +143,12 @@ var password = {
         if (length >= 19) {
             this.quality = true; 
         }
-        array = [1, 3, 4];
         for (i = 0; i < length; i++) {
-            var num = array.charAt(Math.floor(Math.random() * 2)); 
+            var num = Math.floor(Math.random() * 3) + 1; 
             if (num === 1) {
                 this.randAlphaLc(); 
-            } else if (num === 3) {
-                this.randAlphaUc(); 
+            } else if (num === 2) {
+                this.randNumeric(); 
             } else {
                 this.randSpecChar(); 
             }
@@ -150,12 +160,11 @@ var password = {
         if (length >= 13) {
             this.quality = true; 
         }
-        array = [2, 3, 4];
         for (i = 0; i < length; i++) {
-            var num = array.charAt(Math.floor(Math.random() * 2)); 
-            if (num === 2) {
+            var num = Math.floor(Math.random() * 3) + 1; 
+            if (num === 1) {
                 this.randAlphaUc(); 
-            } else if (num === 3) {
+            } else if (num === 2) {
                 this.randNumeric(); 
             } else {
                 this.randSpecChar(); 
@@ -167,13 +176,12 @@ var password = {
         if (length >= 16) {
             this.quality = true; 
         }
-        array = [1, 2, 3]; 
         for (i = 0; i < length; i++) {
-            var num = array.charAt(Math.floor(Math.random() * 2)); 
+            var num = Math.floor(Math.random() * 3) + 1; 
             if (num === 1) {
                 this.randAlphaUc(); 
             } else if (num === 2) {
-                this.randNumeric(); 
+                this.randAlphaLc(); 
             } else {
                 this.randNumeric(); 
             }
@@ -202,7 +210,7 @@ var password = {
         if (length >= 22) {
             this.quality = true; 
         }
-        for (i = 0; i < this.length; i++) {
+        for (i = 0; i < length; i++) {
             this.randNumeric(); 
         }
     }, 
@@ -221,8 +229,8 @@ var password = {
             this.quality = true; 
         }
         for (i = 0; i < length; i++) {
-            var num = Math.floor(Math.random()); 
-            if (num === 0) {
+            var num = Math.floor(Math.random() * 2) + 1; 
+            if (num === 1) {
                 this.randAlphaLc(); 
             } else {
                 this.randAlphaUc(); 
@@ -236,8 +244,8 @@ var password = {
             this.quality = true; 
         }
         for (i = 0; i < length; i++) {
-            var num = Math.floor(Math.random()); 
-            if (num === 0) {
+            var num = Math.floor(Math.random() * 2) + 1; 
+            if (num === 1) {
                 this.randNumeric(); 
             } else {
                 this.randSpecChar(); 
@@ -246,8 +254,9 @@ var password = {
     }
 }
 
-
-
+//test to web console
+writePassword();
+console.log(randPw);  
 
 
 
