@@ -4,7 +4,6 @@
 // // Write password to the #password input
 // function writePassword() {
 //   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
 
 //   passwordText.value = password;
 
@@ -13,28 +12,30 @@
 // // Add event listener to generate button
 // generateBtn.addEventListener("click", writePassword);
 
+var generateBtn = document.querySelector("#generate");
 
-//var generateBtn = document.querySelector("#generate");
-// var length = document.getElementById("inputLength").value; 
-// var casing = toString(document.getElementById("inputCasing").value);
-// var incNumb = toString(document.getElementById("inputNum").value); 
-// var spChar = toString(document.getElementById("inputSpChar").value); 
-// var randPw = writePassword();
-//passwordText.value = randPw; 
-//generateBtn.addEventListener("click", writePassword);
-
-
-//Define Variables
-const length = 18; 
-const casing = "all lower"; 
-const incNumb = "Use Some Numbers"; 
-const spChar = "Some Special Characters"; 
 let randPw = ''; 
 
+var getFormData = function() {
+    debugger
+    //event.preventDefault();  
+    let randPw = ''; 
+    var length = parseInt(document.getElementById("inputLength").value); 
+    var casing = document.getElementById("inputCasing").value;
+    var incNumb = document.getElementById("inputNum").value; 
+    var spChar = document.getElementById("inputSpChar").value; 
+    var passwordText = document.querySelector("#password");
+    writePassword(length, casing, incNumb, spChar);  
+    passwordText.value = randPw; 
+    return randPw; 
+}
 
+generateBtn.addEventListener("click", getFormData);
 
 //define function to call various methods within the 'password' object, based on values returned from document queries 
-function writePassword () {
+var writePassword = function(length, casing, incNumb, spChar) {
+    password.length = length; 
+
     if (casing === "ALL UPPER" && incNumb === "No Numbers" && spChar === "No Special Characters") {
         password.passAllUpp(); 
         return randPw; 
@@ -76,6 +77,7 @@ function writePassword () {
 //define password method
 //Contains all alpha/num/special character lists that each password.method pulls from
 var password = {
+    length: 10,
     alphaLc: "abcdefghijklmnopqrstuvwxyz",
     alphaUc: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
     numeric: "0123456789", 
@@ -109,7 +111,7 @@ var password = {
     },
 
     strongPw: function() {
-        for (i = 0; i < length; i++) {
+        for (i = 0; i < password.length; i++) {
             var num = Math.floor(Math.random() * 4) + 1; 
             if (num === 1) {
                 this.randAlphaLc(); 
@@ -254,9 +256,6 @@ var password = {
     }
 }
 
-//test to web console
-writePassword();
-console.log(randPw);  
 
 
 
