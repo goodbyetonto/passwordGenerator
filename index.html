@@ -6,31 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Password Generator</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
+    <link rel="stylesheet" href="style.css">
+  </head>
 <body>
     <!-- Image and text -->
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="index.html">
-            <img src="assets/images/hacker.png" width="60" height="85" class="d-inline-block align-top" alt="brand logo">
-      Secure Password Generator
-        </a>
+    <nav class="navbar sticky-top navbar-light bg-light">
+        <a class="navbar-brand"  href="index.html">
+            <img src="assets/images/hacker.png" width="60" height="85" class="d-inline-block align-top" id="header" alt="brand logo">Secure Password Generator</a>
     </nav>
-    <div class="container">
+    <div class="container mx-auto">
         <div class="row">
-            <div class="column-md-12">
-                <div class="card" style="width: 18rem;">
-                    <img src="assets/images/padlock.png" class="card-img-top" alt="...">
-                    <div class="card-body">
+            <div class="column-md-6 mx-auto">
+                <div class="card text-center" style="width: 20rem;">
+                    <img src="assets/images/padlock.png" class="card-img-top" alt="padlock image">
+                    <div class="card-body" id="card-body">
                       <h5 class="card-title">Customize your Password</h5>
                       <div class="form-group">
                         <label for="exampleFormControlInput1">Password Length</label>
-                        <input type="email" class="form-control" id="inputLength" placeholder="Pick a number between 8-128 for Password Length">
+                        <input type="email" class="form-control" id="inputLength" placeholder="Between 8-128 Characters">
                       </div>
                       <div class="form-group">
                         <label for="exampleFormControlSelect1">Letter Casing</label>
                         <select class="form-control" id="inputCasing">
-                          <option>ALL UPPER</option>
-                          <option>all lower</option>
+                          <option>UPPER</option>
+                          <option>lower</option>
                           <option>Mixture</option>
                           <option>No Letters</option>
                         </select>
@@ -38,21 +37,21 @@
                       <div class="form-group">
                         <label for="exampleFormControlSelect1">Numeric</label>
                         <select class="form-control" id="inputNum">
-                          <option>All Numbers</option>
+                          <option>Numbers</option>
                           <option>No Numbers</option>
-                          <option>Use Some Numbers</option>
                         </select>
                       </div>
                       <div class="form-group">
                         <label for="exampleFormControlSelect1">Special Characters</label>
                         <select class="form-control" id="inputSpChar">
-                          <option>All Special Characters</option>
-                          <option>Some Special Characters</option>
+                          <option>Special Characters</option>
                           <option>No Special Characters</option>
                         </select>
                       </div>
-                      <textarea readonly id="password" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
-                      <button type="button" id="generate" class="btn btn-secondary">Generate Password</button>                    </div>
+                      <textarea id="password" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
+                      <textarea id="quality" placeholder="Password Strength" aria-label="Generated Password"></textarea>
+                      <button type="button" id="generate" class="btn btn-secondary">Generate Password</button>                    
+                    </div>
                   </div>
             </div>
         </div>

@@ -1,77 +1,56 @@
-// // Assignment Code
-// var generateBtn = document.querySelector("#generate");
-
-// // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-
-//   passwordText.value = password;
-
-// }
-
-// // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
-
 var generateBtn = document.querySelector("#generate");
 
 let randPw = ''; 
 
 var getFormData = function() {
-    debugger
-    //event.preventDefault();  
-    let randPw = ''; 
-    var length = parseInt(document.getElementById("inputLength").value); 
+    var strong = "Your Password is Strong"; 
+    var weak = "Your Password is Weak"; 
+    var length = parseInt(document.getElementById("inputLength").value);
     var casing = document.getElementById("inputCasing").value;
     var incNumb = document.getElementById("inputNum").value; 
     var spChar = document.getElementById("inputSpChar").value; 
-    var passwordText = document.querySelector("#password");
-    writePassword(length, casing, incNumb, spChar);  
-    passwordText.value = randPw; 
-    return randPw; 
+    writePassword(length, casing, incNumb, spChar); 
+    document.getElementById("password").textContent = randPw; 
+    //quality();  
 }
 
 generateBtn.addEventListener("click", getFormData);
 
+// var quality = function(){
+//     var quality = this.quality; 
+//     if (quality) {
+//         document.getElementById("quality").textContent = strong; 
+//     } else {
+//         document.getElementById("quality").textContent = weak; 
+//     }
+// }
+
 //define function to call various methods within the 'password' object, based on values returned from document queries 
 var writePassword = function(length, casing, incNumb, spChar) {
     password.length = length; 
-
-    if (casing === "ALL UPPER" && incNumb === "No Numbers" && spChar === "No Special Characters") {
+    if (casing == "UPPER" && incNumb == "No Numbers" && spChar == "No Special Characters") {
         password.passAllUpp(); 
-        return randPw; 
-    } else if (casing === "all lower" && incNumb === "No Numbers" && spChar === "No Special Characters") {
+    } else if (casing == "lower" && incNumb == "No Numbers" && spChar == "No Special Characters") {
         password.passAllLow(); 
-        return randPw; 
-    } else if (casing === "No Letters" && incNumb === "All Numbers" && spChar === "No Special Characters") {
+    } else if (casing == "No Letters" && incNumb == "Numbers" && spChar == "No Special Characters") {
         password.passAllNum(); 
-        return randPw; 
-    } else if (casing === "No Letters" && incNumb === "No Numbers" && spChar === "All Special Characters") {
+    } else if (casing == "No Letters" && incNumb == "No Numbers" && spChar == "Special Characters") {
         password.passAllSpChar(); 
-        return randPw; 
-    } else if (casing === "Mixture" && incNumb === "No Numbers" && spChar === "No Special Characters") {
+    } else if (casing == "Mixture" && incNumb == "No Numbers" && spChar == "No Special Characters") {
         password.passOnlyLetters(); 
-        return randPw; 
-    } else if (casing === "Mixture" && incNumb === "Use Some Numbers" && spChar === "No Special Characters") {
+    } else if (casing == "Mixture" && incNumb == "Numbers" && spChar == "No Special Characters") {
         password.passNoSpChar(); 
-        return randPw; 
-    } else if (casing === "Mixture" && incNumb === "Use Some Numbers" && spChar === "Some Special Characters") {
+    } else if (casing == "Mixture" && incNumb == "Numbers" && spChar == "Special Characters") {
         password.strongPw(); 
-        return randPw; 
-    } else if (casing === "No Letters" && incNumb === "Use Some Numbers" && spChar === "Some Special Characters") {
+    } else if (casing == "No Letters" && incNumb == "Numbers" && spChar == "Special Characters") {
         password.passNoLetters();
-        return randPw;  
-    } else if (casing === "Mixture" && incNumb === "No Numbers" && spChar === "Some Special Characters") {
+    } else if (casing == "Mixture" && incNumb == "No Numbers" && spChar == "Special Characters") {
         password.passNoNum(); 
-        return randPw
-    } else if (casing === "ALL UPPER" && incNumb === "Use Some Numbers" && spChar === "Some Special Characters") {
+    } else if (casing == "UPPER" && incNumb == "Numbers" && spChar == "Special Characters") {
         password.passNoLower();
-        return randPw; 
     } else {
         password.passNoUpper(); 
-        return randPw; 
     } 
-    
-
 }
 
 //define password method
@@ -111,13 +90,16 @@ var password = {
     },
 
     strongPw: function() {
+        if (this.length >= 11) {
+            this.quality = true; 
+        }
         for (i = 0; i < password.length; i++) {
             var num = Math.floor(Math.random() * 4) + 1; 
-            if (num === 1) {
+            if (num == 1) {
                 this.randAlphaLc(); 
-            } else if (num === 2) {
+            } else if (num == 2) {
                 this.randAlphaUc(); 
-            } else if (num === 3) {
+            } else if (num == 3) {
                 this.randNumeric(); 
             } else {
                 this.randSpecChar(); 
@@ -126,14 +108,15 @@ var password = {
     },
 
     passNoNum: function() {
-        if (length >= 19) {
-            this.quality = true; 
+        if (password.length >= 19) {
+            this.quality = true;
+            return this.quality;  
         }
-        for (i = 0; i < length; i++) {
+        for (i = 0; i < password.length; i++) {
             var num = Math.floor(Math.random() * 3) + 1; 
-            if (num === 1) {
+            if (num == 1) {
                 this.randAlphaLc(); 
-            } else if (num === 2) {
+            } else if (num == 2) {
                 this.randAlphaUc(); 
             } else {
                 this.randSpecChar(); 
@@ -142,14 +125,14 @@ var password = {
     },
 
     passNoUpper: function() {
-        if (length >= 19) {
+        if (password.length >= 19) {
             this.quality = true; 
         }
-        for (i = 0; i < length; i++) {
+        for (i = 0; i < password.length; i++) {
             var num = Math.floor(Math.random() * 3) + 1; 
-            if (num === 1) {
+            if (num == 1) {
                 this.randAlphaLc(); 
-            } else if (num === 2) {
+            } else if (num == 2) {
                 this.randNumeric(); 
             } else {
                 this.randSpecChar(); 
@@ -159,14 +142,14 @@ var password = {
 
 
     passNoLower: function() {
-        if (length >= 13) {
+        if (password.length >= 13) {
             this.quality = true; 
         }
-        for (i = 0; i < length; i++) {
+        for (i = 0; i < password.length; i++) {
             var num = Math.floor(Math.random() * 3) + 1; 
-            if (num === 1) {
+            if (num == 1) {
                 this.randAlphaUc(); 
-            } else if (num === 2) {
+            } else if (num == 2) {
                 this.randNumeric(); 
             } else {
                 this.randSpecChar(); 
@@ -175,14 +158,14 @@ var password = {
     }, 
 
     passNoSpChar: function() {
-        if (length >= 16) {
+        if (password.length >= 16) {
             this.quality = true; 
         }
-        for (i = 0; i < length; i++) {
+        for (i = 0; i < password.length; i++) {
             var num = Math.floor(Math.random() * 3) + 1; 
-            if (num === 1) {
+            if (num == 1) {
                 this.randAlphaUc(); 
-            } else if (num === 2) {
+            } else if (num == 2) {
                 this.randAlphaLc(); 
             } else {
                 this.randNumeric(); 
@@ -191,48 +174,48 @@ var password = {
     }, 
 
     passAllLow: function() {
-        if (length >= 32) {
+        if (password.length >= 32) {
             this.quality = true; 
         }
-        for (i = 0; i < length; i++) {
+        for (i = 0; i < password.length; i++) {
             this.randAlphaLc(); 
         }
     }, 
 
     passAllUpp: function() {
-        if (length >= 27) {
+        if (password.length >= 27) {
             this.quality = true; 
         }
-        for (i = 0; i < length; i++) {
+        for (i = 0; i < password.length; i++) {
             this.randAlphaUc();
         }
     }, 
 
     passAllNum: function() {
-        if (length >= 22) {
+        if (password.length >= 22) {
             this.quality = true; 
         }
-        for (i = 0; i < length; i++) {
+        for (i = 0; i < password.length; i++) {
             this.randNumeric(); 
         }
     }, 
 
     passAllSpChar: function() {
-        if (length >= 22) {
+        if (password.length >= 22) {
             this.quality = true; 
         }
-        for (i = 0; i < length; i++) {
+        for (i = 0; i < password.length; i++) {
             this.randSpecChar(); 
         }
     },
 
     passOnlyLetters: function() {
-        if (length >= 24) {
+        if (password.length >= 24) {
             this.quality = true; 
         }
-        for (i = 0; i < length; i++) {
+        for (i = 0; i < password.length; i++) {
             var num = Math.floor(Math.random() * 2) + 1; 
-            if (num === 1) {
+            if (num == 1) {
                 this.randAlphaLc(); 
             } else {
                 this.randAlphaUc(); 
@@ -242,12 +225,12 @@ var password = {
     },
 
     passNoLetters: function() {
-        if (length >= 16) {
+        if (password.length >= 16) {
             this.quality = true; 
         }
-        for (i = 0; i < length; i++) {
+        for (i = 0; i < password.length; i++) {
             var num = Math.floor(Math.random() * 2) + 1; 
-            if (num === 1) {
+            if (num == 1) {
                 this.randNumeric(); 
             } else {
                 this.randSpecChar(); 
@@ -266,4 +249,4 @@ var password = {
   
 
 
-  
+
