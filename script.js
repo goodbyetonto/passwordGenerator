@@ -1,14 +1,10 @@
-// Define Global Variables
+// Define Global Variable
 var generateBtn = document.querySelector("#generate");
 let randPw = ''; 
 
-// Create 'Click' Event Listener for 'generate' button
-generateBtn.addEventListener("click", getFormData);
 
-// Pull Form Data
+// Collect Form Data and then determine which combination of criteria are passed into the password generator
 var getFormData = function() {
-    //var strong = "Your Password is Strong"; 
-    //var weak = "Your Password is Weak"; 
     var length = parseInt(document.getElementById("inputLength").value);
     var casing = document.getElementById("inputCasing").value;
     var incNumb = document.getElementById("inputNum").value; 
@@ -16,6 +12,22 @@ var getFormData = function() {
     writePassword(length, casing, incNumb, spChar); 
     document.getElementById("password").textContent = randPw; 
 }
+
+// Assess strength of password based on all form criteria
+function quality() {
+    var strong = "Your Password is Strong"; 
+    var weak = "Your Password is Weak"; 
+    var quality = document.getElementById("quality");
+    if (password.quality) {
+        quality.textContent = strong; 
+    } else {
+        quality.textContent = weak; 
+    }
+}
+
+// Event Listeners
+generateBtn.addEventListener("click", getFormData);
+generateBtn.addEventListener("click", quality); 
 
 
 //define function to call various methods within the 'password' object, based on values returned from document queries 
@@ -46,8 +58,8 @@ var writePassword = function(length, casing, incNumb, spChar) {
     } 
 }
 
-//define password method
-//Contains all alpha/num/special character lists that each password.method pulls from
+//define password object
+//Contains all alpha/num/special character lists that each password.method pulls from, in addition to establish quality boolean used for strength measuring
 var password = {
     length: 10,
     alphaLc: "abcdefghijklmnopqrstuvwxyz",
@@ -56,7 +68,6 @@ var password = {
     specialChar: "~!@#$%^&*()_+=-|}]{[';:/?.>,<",
     quality: false,
 
- 
     //Define method
     randAlphaLc: function() {
         //set 'var' to be random index of character list
@@ -82,12 +93,18 @@ var password = {
         return randPw; 
     },
 
+
+    // Define method
     strongPw: function() {
+        // Check for length to determine if password is considered strong/not
         if (this.length >= 11) {
             this.quality = true; 
         }
+        // Create a loop that will iterate through the above object strings, to randomly pull a character from chosen string. 
         for (i = 0; i < password.length; i++) {
+            //Create random number used to randomly pick a character from the appropriate character strings, based on the selected criteria in the form
             var num = Math.floor(Math.random() * 4) + 1; 
+            // If num is equal to 1, pick random lower case alpha character from randAlphaLc()
             if (num == 1) {
                 this.randAlphaLc(); 
             } else if (num == 2) {
@@ -166,6 +183,7 @@ var password = {
         }
     }, 
 
+    // These methods are all of a single character type and follow the same logic as those methods above them
     passAllLow: function() {
         if (password.length >= 32) {
             this.quality = true; 
@@ -231,16 +249,6 @@ var password = {
         }
     }
 }
-
-// Was working on a password strength feature
-// var quality = function(){
-//     var quality = this.quality; 
-//     if (quality) {
-//         document.getElementById("quality").textContent = strong; 
-//     } else {
-//         document.getElementById("quality").textContent = weak; 
-//     }
-// }
 
 
 

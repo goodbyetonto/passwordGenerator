@@ -4,14 +4,20 @@
 
 #password {
   width: 20rem; 
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 #quality {
+  margin-top: 15px;
   width: 20rem;
 }
 
 #card-body {
   padding-left: 0px;
   padding-right: 0px;
+}
+
+.card {
+  margin-top: 100px;
+  margin-bottom: 100px;
 }

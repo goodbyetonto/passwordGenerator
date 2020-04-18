@@ -9,24 +9,20 @@
     <link rel="stylesheet" href="style.css">
   </head>
 <body>
-    <!-- Image and text -->
     <nav class="navbar sticky-top navbar-light bg-light">
         <a class="navbar-brand"  href="index.html">
-            <img src="assets/images/hacker.png" width="60" height="85" class="d-inline-block align-top" id="header" alt="brand logo">Secure Password Generator</a>
+            <img src="assets/images/hacker.png" width="60" height="85" class="d-inline-block align-top" id="header" alt="brand logo"></a>
     </nav>
-    <div class="container mx-auto">
+    <main class="container mx-auto">
         <div class="row">
-            <div class="column-md-6 mx-auto">
+            <div class="column-md-3 mx-auto">
                 <div class="card text-center" style="width: 20rem;">
-                    <img src="assets/images/padlock.png" class="card-img-top" alt="padlock image">
                     <div class="card-body" id="card-body">
-                      <h5 class="card-title">Customize your Password</h5>
+                      <h5 class="card-title">PASSWORD GENERATOR</h5>
                       <div class="form-group">
-                        <label for="exampleFormControlInput1">Password Length</label>
-                        <input type="email" class="form-control" id="inputLength" placeholder="Between 8-128 Characters">
+                        <input type="email" class="form-control" id="inputLength" placeholder="Enter Between 8-128 Characters">
                       </div>
                       <div class="form-group">
-                        <label for="exampleFormControlSelect1">Letter Casing</label>
                         <select class="form-control" id="inputCasing">
                           <option>UPPER</option>
                           <option>lower</option>
@@ -35,14 +31,12 @@
                         </select>
                       </div>
                       <div class="form-group">
-                        <label for="exampleFormControlSelect1">Numeric</label>
                         <select class="form-control" id="inputNum">
                           <option>Numbers</option>
                           <option>No Numbers</option>
                         </select>
                       </div>
                       <div class="form-group">
-                        <label for="exampleFormControlSelect1">Special Characters</label>
                         <select class="form-control" id="inputSpChar">
                           <option>Special Characters</option>
                           <option>No Special Characters</option>
@@ -55,7 +49,7 @@
                   </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <script src="script.js"></script>  
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
