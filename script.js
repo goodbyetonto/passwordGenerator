@@ -1,29 +1,22 @@
+// Define Global Variables
 var generateBtn = document.querySelector("#generate");
-
 let randPw = ''; 
 
+// Create 'Click' Event Listener for 'generate' button
+generateBtn.addEventListener("click", getFormData);
+
+// Pull Form Data
 var getFormData = function() {
-    var strong = "Your Password is Strong"; 
-    var weak = "Your Password is Weak"; 
+    //var strong = "Your Password is Strong"; 
+    //var weak = "Your Password is Weak"; 
     var length = parseInt(document.getElementById("inputLength").value);
     var casing = document.getElementById("inputCasing").value;
     var incNumb = document.getElementById("inputNum").value; 
     var spChar = document.getElementById("inputSpChar").value; 
     writePassword(length, casing, incNumb, spChar); 
     document.getElementById("password").textContent = randPw; 
-    //quality();  
 }
 
-generateBtn.addEventListener("click", getFormData);
-
-// var quality = function(){
-//     var quality = this.quality; 
-//     if (quality) {
-//         document.getElementById("quality").textContent = strong; 
-//     } else {
-//         document.getElementById("quality").textContent = weak; 
-//     }
-// }
 
 //define function to call various methods within the 'password' object, based on values returned from document queries 
 var writePassword = function(length, casing, incNumb, spChar) {
@@ -238,6 +231,16 @@ var password = {
         }
     }
 }
+
+// Was working on a password strength feature
+// var quality = function(){
+//     var quality = this.quality; 
+//     if (quality) {
+//         document.getElementById("quality").textContent = strong; 
+//     } else {
+//         document.getElementById("quality").textContent = weak; 
+//     }
+// }
 
 
 
